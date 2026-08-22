@@ -1,42 +1,27 @@
 package io.github.crypt_loli.loli_onebot.entity.event.message
 
 import io.github.crypt_loli.loli_onebot.entity.event.OneBotEvent
-import io.github.crypt_loli.loli_onebot.entity.array.OneBotArrayMessage
+import io.github.crypt_loli.loli_onebot.entity.array.ArrayMessage
+import io.github.crypt_loli.loli_onebot.entity.base.MessageType
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 open class OneBotMessageEvent(
     @SerialName("message_type")
-    val messageType: MessageType = MessageType.Invalid,
+    val messageType: MessageType = MessageType.Group,
     @SerialName("sub_type")
     val subType: SubType = SubType.Invalid,
     @SerialName("message_id")
     val messageId: Long = 0L,
     @SerialName("user_id")
     val userId: Long = 0L,
-    val message: List<OneBotArrayMessage> = emptyList(),
+    val message: List<ArrayMessage> = emptyList(),
     @SerialName("raw_message")
     val rawMessage: String = "",
     val font: Int = 0,
     val sender: Sender = Sender()
 ): OneBotEvent() {
-
-    @Serializable
-    enum class MessageType {
-        /**
-         * 私聊消息
-         */
-        @SerialName("private")
-        Private,
-        /**
-         * 群消息
-         */
-        @SerialName("group")
-        Group,
-
-        Invalid
-    }
 
     @Serializable
     enum class SubType {
