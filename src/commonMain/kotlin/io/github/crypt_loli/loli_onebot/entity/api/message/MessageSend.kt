@@ -1,0 +1,58 @@
+package io.github.crypt_loli.loli_onebot.entity.api.message
+
+import io.github.crypt_loli.loli_onebot.entity.api.ApiBase
+import io.github.crypt_loli.loli_onebot.entity.array.OneBotArrayMessage
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class ApiMessageGroupRaw(
+    val params: Params,
+    val action: String = "send_group_msg"
+): ApiBase() {
+    @Serializable
+    data class Params(
+        @SerialName("group_id")
+        val groupId: Long,
+        val message: String
+    )
+}
+
+@Serializable
+data class ApiMessageGroupArray(
+    val params: Params,
+    val action: String = "send_group_msg"
+): ApiBase() {
+    @Serializable
+    data class Params(
+        @SerialName("group_id")
+        val groupId: Long,
+        val message: List<OneBotArrayMessage>
+    )
+}
+
+@Serializable
+data class ApiMessagePrivateRaw(
+    val params: Params,
+    val action: String = "send_private_msg"
+): ApiBase() {
+    @Serializable
+    data class Params(
+        @SerialName("user_id")
+        val userId: Long,
+        val message: String
+    )
+}
+
+@Serializable
+data class ApiMessagePrivateArray(
+    val params: Params,
+    val action: String = "send_private_msg"
+): ApiBase() {
+    @Serializable
+    data class Params(
+        @SerialName("user_id")
+        val userId: Long,
+        val message: List<OneBotArrayMessage>
+    )
+}
